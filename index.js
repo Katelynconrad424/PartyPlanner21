@@ -9,7 +9,6 @@ let selectedParty;
 let rsvps = [];
 let guests = [];
 
-/** Updates state with all parties from the API */
 async function getParties() {
   try {
     const response = await fetch(API + "/events");
@@ -21,7 +20,6 @@ async function getParties() {
   }
 }
 
-/** Updates state with a single party from the API */
 async function getParty(id) {
   try {
     const response = await fetch(API + "/events/" + id);
@@ -33,7 +31,6 @@ async function getParty(id) {
   }
 }
 
-/** Updates state with all RSVPs from the API */
 async function getRsvps() {
   try {
     const response = await fetch(API + "/rsvps");
@@ -45,7 +42,6 @@ async function getRsvps() {
   }
 }
 
-/** Updates state with all guests from the API */
 async function getGuests() {
   try {
     const response = await fetch(API + "/guests");
@@ -59,7 +55,6 @@ async function getGuests() {
 
 // === Components ===
 
-/** Party name that shows more details about the party when clicked */
 function PartyListItem(party) {
   const $li = document.createElement("li");
 
@@ -74,7 +69,6 @@ function PartyListItem(party) {
   return $li;
 }
 
-/** A list of names of all parties */
 function PartyList() {
   const $ul = document.createElement("ul");
   $ul.classList.add("parties");
@@ -85,7 +79,6 @@ function PartyList() {
   return $ul;
 }
 
-/** Detailed information about the selected party */
 function SelectedParty() {
   if (!selectedParty) {
     const $p = document.createElement("p");
@@ -108,7 +101,6 @@ function SelectedParty() {
   return $party;
 }
 
-/** List of guests attending the selected party */
 function GuestList() {
   const $ul = document.createElement("ul");
   const guestsAtParty = guests.filter((guest) =>
@@ -117,7 +109,6 @@ function GuestList() {
     )
   );
 
-  // Simple components can also be created anonymously:
   const $guests = guestsAtParty.map((guest) => {
     const $guest = document.createElement("li");
     $guest.textContent = guest.name;
